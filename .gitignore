@@ -2,7 +2,7 @@
 .env.*
 //!.env.example
 raw_data/
-output/
+//output/
 *.log
 __pycache__/
 .DS_Store
