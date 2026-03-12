@@ -8,8 +8,8 @@ sys.path.insert(0, str(Path(__file__).resolve().parent))
 import pandas as pd
 
 # ── 경로 설정 ─────────────────────────────────────────────
-INDUTY_FILE   = Path("data/etc/delisted_induty_codes.csv")
-DELISTED_FILE = Path("data/etc/상장폐지현황.xlsx")
+INDUTY_FILE   = Path("data/input/delisted_induty_codes.csv")
+DELISTED_FILE = Path("data/input/상장폐지현황.xlsx")
 
 NORMAL_FILE   = Path("data/input/C_companies.csv")
 OUTPUT_FILE   = Path("data/input/C_companies_final.csv")
