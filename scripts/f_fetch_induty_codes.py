@@ -7,7 +7,7 @@ load_dotenv()
 
 api_key = os.getenv("DART_API_KEY")
 
-tree = ET.parse("data/corp_codes.xml")
+tree = ET.parse("data/corpCode.xml")
 root = tree.getroot()
 code_map = {
     (item.findtext("stock_code") or "").strip(): 
