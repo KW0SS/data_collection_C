@@ -10,6 +10,7 @@ import pandas as pd
 # ── 경로 설정 ─────────────────────────────────────────────
 INDUTY_FILE   = Path("data/input/delisted_induty_codes.csv")
 DELISTED_FILE = Path("data/input/상장폐지현황.xlsx")
+DELISTED_ONLY_FILE = Path("data/input/C_companies_delisted_only.csv")
 
 NORMAL_FILE   = Path("data/input/C_companies.csv")
 OUTPUT_FILE   = Path("data/input/C_companies_final.csv")
@@ -133,7 +134,8 @@ def main():
     # 상폐 기업 데이터 로드
     df_del = pd.read_excel(
         DELISTED_FILE,
-        dtype={"종목코드": str}
+        dtype={"종목코드": str},
+        engine="openpyxl"
     )
 
     df_del = df_del[["종목코드", "폐지일자", "폐지사유"]]
@@ -262,6 +264,15 @@ def main():
 
 
     OUTPUT_FILE.parent.mkdir(parents=True, exist_ok=True)
+
+    # 상폐 기업만 따로 저장
+    df_del_final.to_csv(
+        DELISTED_ONLY_FILE,
+        index=False,
+        encoding="utf-8-sig"
+    )
+    print(f"상폐 기업 전용 파일 저장 완료: {DELISTED_ONLY_FILE}")
+
 
     df_final.to_csv(
         OUTPUT_FILE,
