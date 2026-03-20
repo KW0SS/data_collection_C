@@ -148,7 +148,7 @@ def upload_raw_to_s3(
     client = _get_s3_client(config)
 
     # S3 key 생성: {gics_sector}/{stock_code}_{year}_{quarter}.json
-    s3_key = f"{gics_sector}/{stock_code}_{year}_{quarter}.json"
+    s3_key = f"delisted/{gics_sector}/{stock_code}_{year}_{quarter}.json"
     body = json.dumps(raw_items, ensure_ascii=False, indent=2).encode("utf-8")
 
     # 업로드 시도 → NoSuchBucket이면 버킷 생성 후 재시도
@@ -201,10 +201,7 @@ def upload_batch_to_s3(
     uploaded: list[str] = []
 
     for entry in raw_data_list:
-        s3_key = (
-            f"{entry['gics_sector']}/"
-            f"{entry['stock_code']}_{entry['year']}_{entry['quarter']}.json"
-        )
+        s3_key = f"delisted/{entry['gics_sector']}/{entry['stock_code']}_{entry['year']}_{entry['quarter']}.json"
         body = json.dumps(
             entry["raw_items"], ensure_ascii=False, indent=2
         ).encode("utf-8")
