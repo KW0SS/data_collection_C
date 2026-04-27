@@ -15,7 +15,7 @@ from dotenv import load_dotenv
 import os
 
 # 조장이 요구한 S3 프로젝트 prefix. 하드코딩 문자열 반복을 방지하기 위해 상수로 관리한다.
-PROJECT_PREFIX = "data_collection"
+PROJECT_PREFIX = "healthy"
 
 # 담당 기본 섹터(소수 섹터 + 안정군)
 DEFAULT_TARGET_SECTORS = [
